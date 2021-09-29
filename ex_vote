@@ -1,0 +1,68 @@
+def verif (ch):
+    for i in range(len(ch)):
+        if not(ord(ch[i]) in range(65,91) or ord(ch[i])==32 or ord(ch[i])in range(97,123)):
+            return False
+    return True
+def remplir_1():
+    t=["","","","",""]
+    for i in range(5):
+        while True:
+            t[i]=input("donner le titre n° "+str(i))
+            if verif(t[i]) :
+                break
+    return t
+def Saisir():
+    while True:
+        n=int(input("donner n : "))
+        if  5<=n<=100:
+            break
+    return n
+def remplir_2(n):
+    l=[0,0,0,0,0]
+    
+    for i in range(n):
+        while True:
+            try:
+                x=int(input("donner votre opinion"+str(i)))
+            except:
+                x=int(input("donner votre opinion again"))
+            if x in range(5):
+                break
+            
+        l[x]+=3
+    return l
+def trier (t1,t2,n):
+    while True:
+        ok=True
+        for i in range(len(t2)-1):
+            if t2[i]<t2[i+1]:
+                ok=False
+                x=t2[i]
+                t2[i]=t2[i+1]
+                t2[i+1]=x
+                y=t1[i]
+                t1[i]=t1[i+1]
+                t1[i+1]=y
+        n=n-1
+        
+        if ok==True:
+            break
+def aff(t1,t2,n):
+    t=["","","","",""]
+    t[0]="Rang 1 :"+t1[0]
+    i=0
+    for j in range(i+1,5):
+         if t2[i]==t2[j]:
+            t[j]='Rang '+str(i)+" : "+t1[j]
+         else:
+             i=j+1
+             t[j]='Rang '+str(j+1)+" : "+t1[j]
+         
+    print(t)
+                
+#**************************
+t1=remplir_1();
+n=Saisir()
+t2=remplir_2(n)
+trier(t1,t2,n)
+aff(t1,t2,n)
